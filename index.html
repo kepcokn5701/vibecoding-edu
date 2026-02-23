@@ -1,0 +1,1375 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>바이브코딩 업무가이드 — 전력산업 AI 실무 교육</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&family=IBM+Plex+Mono:wght@400;500;600&family=Outfit:wght@300;400;600;700;900&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #fafbfc;
+  --bg-warm: #f6f4f0;
+  --bg-card: #ffffff;
+  --bg-code: #1b1f27;
+  --bg-code-soft: #f4f5f7;
+  --surface: #eef0f4;
+  --border: #e2e5ea;
+  --border-strong: #c9cdd4;
+  --accent: #2563eb;
+  --accent-light: #3b82f6;
+  --accent-wash: rgba(37,99,235,0.06);
+  --accent-wash-strong: rgba(37,99,235,0.12);
+  --green: #16a34a;
+  --green-wash: rgba(22,163,74,0.08);
+  --orange: #ea580c;
+  --orange-wash: rgba(234,88,12,0.08);
+  --purple: #7c3aed;
+  --purple-wash: rgba(124,58,237,0.08);
+  --rose: #e11d48;
+  --rose-wash: rgba(225,29,72,0.06);
+  --yellow: #ca8a04;
+  --yellow-wash: rgba(202,138,4,0.08);
+  --teal: #0d9488;
+  --teal-wash: rgba(13,148,136,0.08);
+  --text: #1a1d23;
+  --text-secondary: #5a6069;
+  --text-dim: #8c929a;
+  --kepco: #003d7a;
+  --kepco-wash: rgba(0,61,122,0.06);
+  --shadow-sm: 0 1px 3px rgba(0,0,0,0.04), 0 1px 2px rgba(0,0,0,0.03);
+  --shadow-md: 0 4px 16px rgba(0,0,0,0.06), 0 1px 3px rgba(0,0,0,0.04);
+  --shadow-lg: 0 12px 40px rgba(0,0,0,0.08);
+  --radius: 14px;
+  --radius-sm: 10px;
+}
+
+* { margin:0; padding:0; box-sizing:border-box; }
+html { scroll-behavior:smooth; }
+
+body {
+  font-family: 'Noto Sans KR', 'Outfit', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.78;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ===== PROGRESS BAR (top) ===== */
+#progress-bar {
+  position: fixed; top: 0; left: 0; z-index: 9999;
+  height: 3px; background: var(--accent);
+  width: 0%; transition: width 0.2s;
+}
+
+/* ===== NAV ===== */
+nav {
+  position: fixed; top: 3px; left: 0; right: 0; z-index: 1000;
+  padding: 10px 28px;
+  display: flex; justify-content: space-between; align-items: center;
+  backdrop-filter: blur(20px) saturate(1.3);
+  background: rgba(250,251,252,0.85);
+  border-bottom: 1px solid var(--border);
+}
+
+.nav-brand {
+  display: flex; align-items: center; gap: 10px;
+  font-family: 'Outfit', sans-serif;
+  font-weight: 700; font-size: 15px; color: var(--text);
+  text-decoration: none;
+}
+
+.nav-logo {
+  width: 32px; height: 32px;
+  background: linear-gradient(135deg, var(--accent), var(--teal));
+  border-radius: 9px;
+  display: flex; align-items: center; justify-content: center;
+  color: #fff; font-size: 15px; font-weight: 900;
+}
+
+.nav-chapters {
+  display: flex; gap: 2px; list-style: none;
+}
+
+.nav-ch {
+  padding: 6px 14px; border-radius: 8px;
+  font-size: 12px; font-weight: 600;
+  color: var(--text-dim);
+  text-decoration: none;
+  transition: all 0.2s;
+}
+
+.nav-ch:hover { color: var(--text-secondary); background: var(--surface); }
+.nav-ch.active { color: var(--accent); background: var(--accent-wash); }
+
+@media (max-width:960px) {
+  .nav-chapters { display: none; }
+  nav { padding: 10px 16px; }
+}
+
+/* ===== CONTENT ===== */
+.wrap { max-width: 820px; margin: 0 auto; padding: 0 24px; }
+
+section { padding: 80px 0; }
+section:first-of-type { padding-top: 100px; }
+
+/* ===== HERO ===== */
+.hero {
+  min-height: 100vh;
+  display: flex; flex-direction: column;
+  justify-content: center;
+  padding-top: 80px;
+}
+
+.hero-badge {
+  display: inline-flex; align-items: center; gap: 8px;
+  padding: 6px 16px 6px 8px;
+  background: var(--kepco-wash);
+  border: 1px solid rgba(0,61,122,0.12);
+  border-radius: 100px;
+  font-size: 12px; font-weight: 600;
+  color: var(--kepco);
+  margin-bottom: 24px;
+  width: fit-content;
+  animation: fadeUp .6s ease both;
+}
+
+.hero-badge .badge-dot {
+  width: 22px; height: 22px;
+  border-radius: 50%;
+  background: var(--kepco);
+  display: flex; align-items: center; justify-content: center;
+  color: #fff; font-size: 11px;
+}
+
+.hero h1 {
+  font-family: 'Outfit', 'Noto Sans KR', sans-serif;
+  font-size: clamp(32px, 5vw, 56px);
+  font-weight: 900;
+  line-height: 1.18;
+  letter-spacing: -1.5px;
+  margin-bottom: 18px;
+  animation: fadeUp .6s ease .08s both;
+}
+
+.hero h1 .accent-text {
+  background: linear-gradient(135deg, var(--accent) 0%, var(--teal) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.hero .hero-sub {
+  font-size: 17px; color: var(--text-secondary);
+  max-width: 560px; margin-bottom: 32px;
+  animation: fadeUp .6s ease .16s both;
+}
+
+.hero-actions {
+  display: flex; gap: 12px; flex-wrap: wrap;
+  animation: fadeUp .6s ease .24s both;
+}
+
+.btn {
+  padding: 12px 26px; border-radius: var(--radius-sm);
+  font-size: 14px; font-weight: 700;
+  font-family: inherit; cursor: pointer;
+  transition: all 0.2s; text-decoration: none;
+  display: inline-flex; align-items: center; gap: 8px;
+  border: none;
+}
+
+.btn-primary { background: var(--accent); color: #fff; }
+.btn-primary:hover { background: #1d4ed8; box-shadow: var(--shadow-md); transform: translateY(-1px); }
+
+.btn-outline { background: transparent; color: var(--text); border: 1.5px solid var(--border-strong); }
+.btn-outline:hover { border-color: var(--accent); color: var(--accent); background: var(--accent-wash); }
+
+/* Chapter map in hero */
+.chapter-map {
+  margin-top: 56px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: 10px;
+  animation: fadeUp .6s ease .32s both;
+}
+
+.ch-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  padding: 16px;
+  text-align: center;
+  transition: all 0.25s;
+  cursor: pointer;
+  text-decoration: none;
+  color: var(--text);
+}
+
+.ch-card:hover {
+  border-color: var(--accent);
+  box-shadow: var(--shadow-md);
+  transform: translateY(-3px);
+}
+
+.ch-num {
+  font-family: 'Outfit', sans-serif;
+  font-size: 11px; font-weight: 700;
+  letter-spacing: 1px;
+  margin-bottom: 6px;
+}
+
+.ch-card .ch-icon { font-size: 24px; margin-bottom: 6px; }
+.ch-card .ch-title { font-size: 12px; font-weight: 700; }
+
+.ch-card[data-color="blue"] .ch-num { color: var(--accent); }
+.ch-card[data-color="green"] .ch-num { color: var(--green); }
+.ch-card[data-color="orange"] .ch-num { color: var(--orange); }
+.ch-card[data-color="purple"] .ch-num { color: var(--purple); }
+.ch-card[data-color="teal"] .ch-num { color: var(--teal); }
+.ch-card[data-color="rose"] .ch-num { color: var(--rose); }
+
+/* ===== CHAPTER HEADER ===== */
+.ch-header {
+  margin-bottom: 40px;
+  padding-top: 20px;
+}
+
+.ch-label {
+  display: inline-flex; align-items: center; gap: 8px;
+  font-family: 'Outfit', sans-serif;
+  font-size: 12px; font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  margin-bottom: 10px;
+}
+
+.ch-label::before {
+  content: '';
+  width: 20px; height: 2.5px;
+  background: currentColor;
+  border-radius: 2px;
+}
+
+.ch-label.blue { color: var(--accent); }
+.ch-label.green { color: var(--green); }
+.ch-label.orange { color: var(--orange); }
+.ch-label.purple { color: var(--purple); }
+.ch-label.teal { color: var(--teal); }
+.ch-label.rose { color: var(--rose); }
+
+.ch-title {
+  font-family: 'Outfit', 'Noto Sans KR', sans-serif;
+  font-size: clamp(24px, 3.5vw, 36px);
+  font-weight: 900; letter-spacing: -0.8px;
+  line-height: 1.25; margin-bottom: 10px;
+}
+
+.ch-desc {
+  font-size: 15px; color: var(--text-secondary);
+  max-width: 560px;
+}
+
+/* ===== LESSON CARD ===== */
+.lesson {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  margin-bottom: 16px;
+  overflow: hidden;
+  transition: border-color 0.2s;
+}
+
+.lesson:hover { border-color: var(--border-strong); }
+
+.lesson-head {
+  display: flex; align-items: center; gap: 14px;
+  padding: 18px 22px;
+  cursor: pointer;
+  user-select: none;
+  transition: background 0.15s;
+}
+
+.lesson-head:hover { background: var(--surface); }
+
+.lesson-marker {
+  width: 36px; height: 36px;
+  border-radius: 10px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 15px; flex-shrink: 0;
+}
+
+.lesson-marker.blue { background: var(--accent-wash-strong); }
+.lesson-marker.green { background: var(--green-wash); }
+.lesson-marker.orange { background: var(--orange-wash); }
+.lesson-marker.purple { background: var(--purple-wash); }
+.lesson-marker.teal { background: var(--teal-wash); }
+.lesson-marker.rose { background: var(--rose-wash); }
+
+.lesson-info { flex: 1; }
+.lesson-info h3 { font-size: 15px; font-weight: 700; }
+.lesson-info p { font-size: 12px; color: var(--text-dim); margin-top: 1px; }
+
+.lesson-toggle {
+  color: var(--text-dim); font-size: 14px;
+  transition: transform 0.3s;
+}
+
+.lesson.open .lesson-toggle { transform: rotate(180deg); }
+
+.lesson-body {
+  max-height: 0; overflow: hidden;
+  transition: max-height 0.45s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.lesson.open .lesson-body { max-height: 4000px; }
+
+.lesson-inner { padding: 0 22px 22px; }
+
+/* ===== PROSE ===== */
+.prose { font-size: 14px; color: var(--text-secondary); line-height: 1.85; }
+.prose strong { color: var(--text); font-weight: 700; }
+.prose a { color: var(--accent); text-decoration: underline; text-underline-offset: 2px; }
+
+.prose code {
+  background: var(--bg-code-soft);
+  padding: 2px 7px;
+  border-radius: 5px;
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 12.5px;
+  color: var(--rose);
+}
+
+/* ===== TERMINAL ===== */
+.term {
+  background: var(--bg-code);
+  border-radius: var(--radius-sm);
+  overflow: hidden;
+  margin: 14px 0;
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 12.5px;
+  line-height: 1.9;
+  position: relative;
+}
+
+.term-bar {
+  display: flex; align-items: center; gap: 6px;
+  padding: 10px 14px;
+  background: rgba(0,0,0,0.25);
+}
+
+.td { width: 10px; height: 10px; border-radius: 50%; }
+.td:nth-child(1) { background: #ff5f57; }
+.td:nth-child(2) { background: #ffbd2e; }
+.td:nth-child(3) { background: #28c840; }
+
+.term-title {
+  flex: 1; text-align: center;
+  font-size: 11px; color: rgba(255,255,255,0.35);
+}
+
+.term-body { padding: 14px 18px; color: #c9d1d9; overflow-x: auto; }
+
+.t-prompt { color: #7ee787; }
+.t-cmd { color: #e6edf3; }
+.t-comment { color: #6e7681; font-style: italic; }
+.t-out { color: #8b949e; }
+.t-hl { color: #79c0ff; }
+.t-ok { color: #7ee787; }
+.t-warn { color: #e3b341; }
+.t-url { color: #79c0ff; text-decoration: underline; }
+.t-line { min-height: 1.4em; }
+
+.copy-btn {
+  position: absolute; top: 9px; right: 12px;
+  background: rgba(255,255,255,0.08);
+  border: 1px solid rgba(255,255,255,0.1);
+  color: rgba(255,255,255,0.4);
+  padding: 3px 10px; border-radius: 6px;
+  font-size: 11px; font-family: inherit;
+  cursor: pointer; transition: all 0.2s;
+}
+.copy-btn:hover { background: rgba(255,255,255,0.14); color: rgba(255,255,255,0.7); }
+
+/* ===== CALLOUT ===== */
+.callout {
+  display: flex; gap: 12px;
+  padding: 14px 18px;
+  border-radius: var(--radius-sm);
+  margin: 14px 0;
+  font-size: 13.5px; line-height: 1.7;
+}
+
+.callout .ci { font-size: 17px; flex-shrink: 0; padding-top: 1px; }
+.callout .ct { color: var(--text-secondary); }
+.callout .ct strong { color: var(--text); }
+.callout .ct code { font-family: 'IBM Plex Mono', monospace; font-size: 12px; background: rgba(0,0,0,0.04); padding: 1px 6px; border-radius: 4px; }
+
+.callout.info { background: var(--accent-wash); border-left: 3px solid var(--accent); }
+.callout.success { background: var(--green-wash); border-left: 3px solid var(--green); }
+.callout.warn { background: var(--orange-wash); border-left: 3px solid var(--orange); }
+.callout.kepco { background: var(--kepco-wash); border-left: 3px solid var(--kepco); }
+
+/* ===== TABS ===== */
+.tabs {
+  display: flex; gap: 2px;
+  margin-bottom: 14px;
+  border-bottom: 1.5px solid var(--border);
+}
+
+.tab-btn {
+  padding: 8px 16px;
+  background: none; border: none;
+  font-family: inherit; font-size: 13px; font-weight: 600;
+  color: var(--text-dim);
+  cursor: pointer;
+  border-bottom: 2px solid transparent;
+  margin-bottom: -2px;
+  transition: all 0.15s;
+}
+
+.tab-btn:hover { color: var(--text-secondary); }
+.tab-btn.on { color: var(--accent); border-bottom-color: var(--accent); }
+
+.tab-panel { display: none; animation: fadeUp 0.35s ease; }
+.tab-panel.on { display: block; }
+
+/* ===== VS COMPARISON ===== */
+.vs-grid {
+  display: grid; grid-template-columns: 1fr auto 1fr;
+  gap: 12px; align-items: start;
+  margin: 16px 0;
+}
+
+.vs-side {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  padding: 16px;
+}
+
+.vs-side.old { opacity: 0.7; }
+.vs-side .vs-label {
+  font-size: 11px; font-weight: 700;
+  text-transform: uppercase; letter-spacing: 1px;
+  margin-bottom: 10px;
+}
+
+.vs-side.old .vs-label { color: var(--text-dim); }
+.vs-side.new .vs-label { color: var(--accent); }
+
+.vs-side pre {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 12px; line-height: 1.8;
+  color: var(--text-secondary);
+  white-space: pre-wrap;
+}
+
+.vs-badge {
+  align-self: center;
+  font-family: 'Outfit', sans-serif;
+  font-weight: 900; font-size: 13px;
+  color: var(--text-dim); letter-spacing: 2px;
+}
+
+@media (max-width: 700px) {
+  .vs-grid { grid-template-columns: 1fr; }
+  .vs-badge { text-align: center; }
+}
+
+/* ===== KEY POINTS GRID ===== */
+.kp-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 12px;
+  margin: 16px 0;
+}
+
+.kp-item {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  padding: 16px;
+  transition: all 0.25s;
+}
+
+.kp-item:hover {
+  border-color: var(--accent);
+  box-shadow: var(--shadow-sm);
+  transform: translateY(-2px);
+}
+
+.kp-item .kpi { font-size: 22px; margin-bottom: 8px; }
+.kp-item h4 { font-size: 14px; font-weight: 700; margin-bottom: 4px; }
+.kp-item p { font-size: 12px; color: var(--text-dim); line-height: 1.6; }
+
+/* ===== CHECKLIST ===== */
+.checklist { list-style: none; margin: 12px 0; }
+
+.checklist li {
+  display: flex; align-items: flex-start; gap: 10px;
+  padding: 10px 12px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.15s;
+  font-size: 14px; color: var(--text-secondary);
+}
+
+.checklist li:hover { background: var(--surface); }
+
+.ck-box {
+  width: 20px; height: 20px;
+  border: 2px solid var(--border-strong);
+  border-radius: 6px;
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0; margin-top: 2px;
+  font-size: 12px; color: transparent;
+  transition: all 0.2s;
+}
+
+.checklist li.done .ck-box {
+  background: var(--green); border-color: var(--green); color: #fff;
+}
+
+.checklist li.done { color: var(--text-dim); }
+
+/* ===== FILE TREE ===== */
+.ftree {
+  background: var(--surface);
+  border-radius: var(--radius-sm);
+  padding: 14px 18px;
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 12.5px; line-height: 2;
+  margin: 12px 0;
+}
+
+.ft-f { color: var(--accent); }
+.ft-d { color: var(--text-dim); }
+.ft-n { color: var(--green); font-weight: 600; }
+.ft-i1 { padding-left: 18px; }
+.ft-i2 { padding-left: 36px; }
+
+/* ===== QUIZ ===== */
+.quiz-wrap {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 28px;
+  margin: 20px 0;
+}
+
+.quiz-progress { display: flex; gap: 5px; margin-bottom: 24px; }
+
+.qp-dot {
+  height: 4px; flex: 1;
+  background: var(--surface);
+  border-radius: 2px;
+  transition: background 0.3s;
+}
+
+.qp-dot.done { background: var(--green); }
+.qp-dot.now { background: var(--accent); }
+
+.q-card { display: none; }
+.q-card.on { display: block; animation: fadeUp 0.35s ease; }
+
+.q-card .q-num { font-size: 12px; font-weight: 700; color: var(--accent); margin-bottom: 6px; }
+.q-card h4 { font-size: 17px; font-weight: 700; margin-bottom: 16px; }
+
+.q-opts { display: flex; flex-direction: column; gap: 8px; }
+
+.q-opt {
+  display: flex; align-items: center; gap: 12px;
+  padding: 14px 16px;
+  background: var(--surface);
+  border: 1.5px solid transparent;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  font-size: 14px; font-family: inherit;
+  color: var(--text);
+  text-align: left;
+  transition: all 0.15s;
+}
+
+.q-opt:hover { border-color: var(--accent); background: var(--accent-wash); }
+
+.q-opt .q-mk {
+  width: 26px; height: 26px;
+  border-radius: 7px;
+  background: var(--bg-card);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 12px; font-weight: 700;
+  flex-shrink: 0;
+  transition: all 0.15s;
+}
+
+.q-opt.correct { border-color: var(--green); background: var(--green-wash); }
+.q-opt.correct .q-mk { background: var(--green); color: #fff; }
+.q-opt.wrong { border-color: var(--rose); background: var(--rose-wash); }
+.q-opt.wrong .q-mk { background: var(--rose); color: #fff; }
+.q-opt.off { pointer-events: none; opacity: 0.6; }
+
+.q-fb {
+  display: none; margin-top: 14px;
+  padding: 12px 16px;
+  border-radius: var(--radius-sm);
+  font-size: 13px; line-height: 1.7;
+}
+
+.q-fb.show { display: block; }
+.q-fb.ok { background: var(--green-wash); color: var(--green); border: 1px solid rgba(22,163,74,0.15); }
+.q-fb.no { background: var(--rose-wash); color: var(--rose); border: 1px solid rgba(225,29,72,0.1); }
+
+.q-next {
+  display: none; margin-top: 14px;
+  padding: 10px 22px;
+  background: var(--accent); color: #fff;
+  border: none; border-radius: 8px;
+  font-size: 13px; font-weight: 700;
+  font-family: inherit; cursor: pointer;
+  transition: all 0.15s;
+}
+
+.q-next.show { display: inline-block; }
+.q-next:hover { background: #1d4ed8; }
+
+.q-result { display: none; text-align: center; }
+.q-result.show { display: block; animation: fadeUp 0.4s ease; }
+
+.q-score {
+  font-family: 'Outfit', sans-serif;
+  font-size: 56px; font-weight: 900;
+  background: linear-gradient(135deg, var(--accent), var(--teal));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.q-result h4 { font-size: 20px; font-weight: 900; margin: 8px 0 6px; }
+.q-result p { font-size: 14px; color: var(--text-secondary); margin-bottom: 20px; }
+
+.q-restart {
+  padding: 10px 28px;
+  background: transparent;
+  border: 1.5px solid var(--accent);
+  color: var(--accent);
+  border-radius: 8px;
+  font-size: 13px; font-weight: 700;
+  font-family: inherit; cursor: pointer;
+  transition: all 0.15s;
+}
+
+.q-restart:hover { background: var(--accent-wash); }
+
+/* ===== CTA ===== */
+.cta {
+  text-align: center;
+  padding: 80px 0 100px;
+}
+
+.cta h2 {
+  font-family: 'Outfit', 'Noto Sans KR', sans-serif;
+  font-size: clamp(26px, 4vw, 40px);
+  font-weight: 900; margin-bottom: 12px;
+  letter-spacing: -0.8px;
+}
+
+.cta p { color: var(--text-secondary); font-size: 15px; max-width: 480px; margin: 0 auto 28px; }
+
+.cta-btns {
+  display: flex; gap: 12px; justify-content: center; flex-wrap: wrap;
+}
+
+/* ===== FOOTER ===== */
+footer {
+  text-align: center; padding: 32px 24px;
+  border-top: 1px solid var(--border);
+  font-size: 12px; color: var(--text-dim);
+}
+
+footer a { color: var(--accent); text-decoration: none; }
+
+/* ===== SCROLL REVEAL ===== */
+.rv { opacity: 0; transform: translateY(24px); transition: all 0.65s cubic-bezier(0.16, 1, 0.3, 1); }
+.rv.vis { opacity: 1; transform: translateY(0); }
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(18px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* ===== SEPARATOR ===== */
+.sep {
+  text-align: center;
+  padding: 24px 0;
+  color: var(--text-dim);
+  font-size: 12px; letter-spacing: 6px;
+  font-family: 'Outfit', sans-serif;
+}
+</style>
+</head>
+<body>
+
+<div id="progress-bar"></div>
+
+<nav>
+  <a href="#hero" class="nav-brand">
+    <div class="nav-logo">⚡</div>
+    바이브코딩 업무가이드
+  </a>
+  <ul class="nav-chapters" id="navChapters">
+    <li><a class="nav-ch active" href="#ch1" data-ch="ch1">CH1 개념</a></li>
+    <li><a class="nav-ch" href="#ch2" data-ch="ch2">CH2 시작</a></li>
+    <li><a class="nav-ch" href="#ch3" data-ch="ch3">CH3 프로토타입</a></li>
+    <li><a class="nav-ch" href="#ch4" data-ch="ch4">CH4 GitHub</a></li>
+    <li><a class="nav-ch" href="#ch5" data-ch="ch5">CH5 배포</a></li>
+    <li><a class="nav-ch" href="#ch6" data-ch="ch6">CH6 공유</a></li>
+    <li><a class="nav-ch" href="#quiz-section" data-ch="quiz-section">퀴즈</a></li>
+  </ul>
+</nav>
+
+<div class="wrap">
+
+<!-- ======================== HERO ======================== -->
+<section class="hero" id="hero">
+  <div class="hero-badge"><div class="badge-dot">⚡</div>전력산업 종사자를 위한 AI 코딩 실무 교육</div>
+  <h1>코드 한 줄 몰라도<br><span class="accent-text">AI 앱을 만들어<br>세상에 공개</span>하는 법</h1>
+  <p class="hero-sub">바이브코딩의 개념부터 프로토타입 제작, GitHub 업로드, Vercel 배포, KEPCO AI ZONE 등록까지. 전력산업 현장에 바로 쓸 수 있는 AI 도구를 직접 만들고 공유하세요.</p>
+  <div class="hero-actions">
+    <a href="#ch1" class="btn btn-primary">학습 시작하기 →</a>
+    <a href="https://kepco-ai-zone.vercel.app" target="_blank" class="btn btn-outline">KEPCO AI ZONE ↗</a>
+  </div>
+  <div class="chapter-map">
+    <a class="ch-card" href="#ch1" data-color="blue"><div class="ch-num">CH 01</div><div class="ch-icon">💬</div><div class="ch-title">바이브코딩이란</div></a>
+    <a class="ch-card" href="#ch2" data-color="green"><div class="ch-num">CH 02</div><div class="ch-icon">🛠️</div><div class="ch-title">도구 준비</div></a>
+    <a class="ch-card" href="#ch3" data-color="orange"><div class="ch-num">CH 03</div><div class="ch-icon">🤖</div><div class="ch-title">프로토타입 제작</div></a>
+    <a class="ch-card" href="#ch4" data-color="purple"><div class="ch-num">CH 04</div><div class="ch-icon">📦</div><div class="ch-title">GitHub 업로드</div></a>
+    <a class="ch-card" href="#ch5" data-color="teal"><div class="ch-num">CH 05</div><div class="ch-icon">🚀</div><div class="ch-title">Vercel 배포</div></a>
+    <a class="ch-card" href="#ch6" data-color="rose"><div class="ch-num">CH 06</div><div class="ch-icon">⚡</div><div class="ch-title">AI ZONE 공유</div></a>
+  </div>
+</section>
+
+<!-- ======================== CH1: 바이브코딩이란 ======================== -->
+<section id="ch1">
+  <div class="ch-header rv">
+    <div class="ch-label blue">CHAPTER 01</div>
+    <div class="ch-title">바이브코딩(Vibe Coding)이란?</div>
+    <div class="ch-desc">프로그래밍 언어 대신 자연어로 AI에게 지시하여 소프트웨어를 만드는 새로운 패러다임입니다.</div>
+  </div>
+
+  <div class="lesson open rv" onclick="tog(this)">
+    <div class="lesson-head">
+      <div class="lesson-marker blue">💬</div>
+      <div class="lesson-info"><h3>기존 코딩 vs 바이브코딩</h3><p>한눈에 비교하기</p></div>
+      <span class="lesson-toggle">▾</span>
+    </div>
+    <div class="lesson-body"><div class="lesson-inner">
+      <div class="vs-grid">
+        <div class="vs-side old">
+          <div class="vs-label">❌ 기존 방식 — 직접 코딩</div>
+          <pre>import pandas as pd
+df = pd.read_excel('전력사용량.xlsx')
+df['peak'] = df['usage'].rolling(24).max()
+fig = px.line(df, x='time', y='peak')
+fig.update_layout(title='피크전력분석')
+# ... 수십~수백 줄 코드 필요</pre>
+        </div>
+        <div class="vs-badge">VS</div>
+        <div class="vs-side new">
+          <div class="vs-label">✅ 바이브코딩 — AI에게 지시</div>
+          <pre>"지난 1년간 월별 피크전력 사용량을
+분석해서 그래프로 보여주고,
+이상치가 있으면 빨간색으로
+표시해줘. 엑셀 파일은 여기 있어."</pre>
+        </div>
+      </div>
+      <div class="callout info">
+        <span class="ci">💡</span>
+        <div class="ct"><strong>핵심 차이:</strong> 기존 코딩은 '어떻게(How)' 만들지를 코드로 지시하지만, 바이브코딩은 '무엇(What)'을 원하는지만 자연어로 설명합니다. AI가 'How'를 알아서 처리합니다.</div>
+      </div>
+    </div></div>
+  </div>
+
+  <div class="lesson rv" onclick="tog(this)">
+    <div class="lesson-head">
+      <div class="lesson-marker blue">🔑</div>
+      <div class="lesson-info"><h3>핵심 개념 3가지</h3><p>자연어 지시, AI 코드 생성, 반복 개선</p></div>
+      <span class="lesson-toggle">▾</span>
+    </div>
+    <div class="lesson-body"><div class="lesson-inner">
+      <div class="kp-grid">
+        <div class="kp-item"><div class="kpi">💬</div><h4>자연어 프롬프팅</h4><p>프로그래밍 언어 대신 일상 언어(한국어)로 원하는 결과를 설명합니다.</p></div>
+        <div class="kp-item"><div class="kpi">🤖</div><h4>AI 코드 생성</h4><p>Claude, ChatGPT 등이 지시를 이해하고 실행 가능한 코드를 자동 작성합니다.</p></div>
+        <div class="kp-item"><div class="kpi">🔄</div><h4>반복적 개선</h4><p>"색상 바꿔줘", "그래프 추가해" 처럼 대화로 계속 수정·발전시킬 수 있습니다.</p></div>
+      </div>
+    </div></div>
+  </div>
+
+  <div class="lesson rv" onclick="tog(this)">
+    <div class="lesson-head">
+      <div class="lesson-marker blue">⚡</div>
+      <div class="lesson-info"><h3>전력산업에서 왜 필요한가?</h3><p>디지털 전환 시대의 필수 역량</p></div>
+      <span class="lesson-toggle">▾</span>
+    </div>
+    <div class="lesson-body"><div class="lesson-inner">
+      <div class="kp-grid">
+        <div class="kp-item"><div class="kpi">⏱️</div><h4>반복 업무 자동화</h4><p>엑셀 정리, 보고서 작성, 점검 기록 관리를 자동화합니다.</p></div>
+        <div class="kp-item"><div class="kpi">📊</div><h4>데이터 분석</h4><p>전력 수급, 설비 이력, 고장 패턴을 직접 분석·시각화합니다.</p></div>
+        <div class="kp-item"><div class="kpi">💡</div><h4>아이디어 즉시 구현</h4><p>IT부서 의뢰 없이 필요한 도구를 10분 안에 만듭니다.</p></div>
+        <div class="kp-item"><div class="kpi">💰</div><h4>비용 절감</h4><p>외주 개발 비용 없이 간단한 업무 도구를 직접 제작합니다.</p></div>
+      </div>
+    </div></div>
+  </div>
+</section>
+
+<div class="sep rv">• • •</div>
+
+<!-- ======================== CH2: 도구 준비 ======================== -->
+<section id="ch2">
+  <div class="ch-header rv">
+    <div class="ch-label green">CHAPTER 02</div>
+    <div class="ch-title">도구 준비하기</div>
+    <div class="ch-desc">바이브코딩에 사용하는 AI 도구들을 알아보고, 자신에게 맞는 도구를 선택합니다.</div>
+  </div>
+
+  <div class="lesson open rv" onclick="tog(this)">
+    <div class="lesson-head">
+      <div class="lesson-marker green">🧰</div>
+      <div class="lesson-info"><h3>추천 AI 도구 비교</h3><p>숙련도와 용도에 따라 선택하세요</p></div>
+      <span class="lesson-toggle">▾</span>
+    </div>
+    <div class="lesson-body"><div class="lesson-inner">
+      <div class="kp-grid">
+        <div class="kp-item"><div class="kpi">🟣</div><h4>Claude (Anthropic)</h4><p>한국어 우수, 파일 생성·다운로드 지원. <strong>입문자 최추천</strong></p></div>
+        <div class="kp-item"><div class="kpi">🟢</div><h4>ChatGPT (OpenAI)</h4><p>범용적 활용, Code Interpreter로 데이터 분석 가능.</p></div>
+        <div class="kp-item"><div class="kpi">🔵</div><h4>Cursor IDE</h4><p>AI 내장 코드 에디터. 프로젝트 단위 개발에 최적.</p></div>
+        <div class="kp-item"><div class="kpi">🟡</div><h4>v0.dev (Vercel)</h4><p>프롬프트로 웹 UI 즉시 생성. 바로 배포 가능.</p></div>
+      </div>
+      <div class="callout info">
+        <span class="ci">🎯</span>
+        <div class="ct"><strong>첫 시작 추천 경로:</strong> <strong>Claude</strong>에서 HTML 파일 생성 → 다운로드 → GitHub 업로드 → Vercel 배포. 가장 간단하고 빠른 방법입니다.</div>
+      </div>
+    </div></div>
+  </div>
+
+  <div class="lesson rv" onclick="tog(this)">
+    <div class="lesson-head">
+      <div class="lesson-marker green">📝</div>
+      <div class="lesson-info"><h3>좋은 프롬프트 작성법</h3><p>AI에게 잘 지시하는 것이 핵심 역량입니다</p></div>
+      <span class="lesson-toggle">▾</span>
+    </div>
+    <div class="lesson-body"><div class="lesson-inner">
+      <div class="prose">
+        <p>바이브코딩의 품질은 <strong>프롬프트(지시문) 품질</strong>에 달려 있습니다. 다음 공식을 기억하세요:</p>
+      </div>
+      <div class="callout success">
+        <span class="ci">✏️</span>
+        <div class="ct"><strong>좋은 프롬프트 = 누가 + 무엇을 + 왜 + 구체적 요구사항</strong></div>
+      </div>
+      <div class="vs-grid">
+        <div class="vs-side old">
+          <div class="vs-label">❌ 나쁜 프롬프트</div>
+          <pre>"변압기 앱 만들어줘"</pre>
+        </div>
+        <div class="vs-badge">VS</div>
+        <div class="vs-side new">
+          <div class="vs-label">✅ 좋은 프롬프트</div>
+          <pre>"현장 기사가 모바일에서 쓸 수 있는
+변압기 점검 체크리스트 웹앱을 만들어줘.
+점검 항목: 절연저항, 유중가스분석, 온도측정.
+각 항목마다 정상/주의/이상 선택 가능.
+이상 선택 시 사진 첨부 기능.
+점검 완료 시 PDF 리포트 출력.
+HTML 파일 하나로 만들어줘."</pre>
+        </div>
+      </div>
+    </div></div>
+  </div>
+</section>
+
+<div class="sep rv">• • •</div>
+
+<!-- ======================== CH3: 프로토타입 제작 ======================== -->
+<section id="ch3">
+  <div class="ch-header rv">
+    <div class="ch-label orange">CHAPTER 03</div>
+    <div class="ch-title">AI로 프로토타입 만들기</div>
+    <div class="ch-desc">실제 전력산업 시나리오로 AI와 대화하며 프로토타입을 만들어 봅니다.</div>
+  </div>
+
+  <div class="lesson open rv" onclick="tog(this)">
+    <div class="lesson-head">
+      <div class="lesson-marker orange">🎬</div>
+      <div class="lesson-info"><h3>실습: 전력설비 점검 앱 만들기</h3><p>4단계 대화 과정을 따라해 보세요</p></div>
+      <span class="lesson-toggle">▾</span>
+    </div>
+    <div class="lesson-body"><div class="lesson-inner">
+      <div class="tabs">
+        <button class="tab-btn on" onclick="stab(event,'d1')">1단계: 요청</button>
+        <button class="tab-btn" onclick="stab(event,'d2')">2단계: 결과</button>
+        <button class="tab-btn" onclick="stab(event,'d3')">3단계: 수정</button>
+        <button class="tab-btn" onclick="stab(event,'d4')">4단계: 완성</button>
+      </div>
+      <div class="tab-panel on" id="d1">
+        <div class="term">
+          <div class="term-bar"><div class="td"></div><div class="td"></div><div class="td"></div><div class="term-title">Claude.ai</div></div>
+          <div class="term-body">
+            <div class="t-line"><span class="t-hl">나:</span> 현장에서 변압기 점검할 때 쓸 수 있는 체크리스트</div>
+            <div class="t-line">웹앱을 만들어줘. 점검 항목은 절연저항, 유중가스분석,</div>
+            <div class="t-line">온도측정, 외관점검이 있고, 각 항목마다 정상/주의/이상</div>
+            <div class="t-line">상태를 선택할 수 있게 해줘.</div>
+            <div class="t-line">점검 완료하면 PDF 리포트로 출력되면 좋겠어.</div>
+            <div class="t-line"><strong>HTML 파일 하나로 만들어줘.</strong></div>
+          </div>
+        </div>
+        <div class="callout info"><span class="ci">💡</span><div class="ct"><strong>포인트:</strong> "HTML 파일 하나로 만들어줘"가 핵심! 이렇게 하면 별도 설치 없이 바로 배포할 수 있는 파일을 받을 수 있습니다.</div></div>
+      </div>
+      <div class="tab-panel" id="d2">
+        <div class="term">
+          <div class="term-bar"><div class="td"></div><div class="td"></div><div class="td"></div><div class="term-title">Claude 응답</div></div>
+          <div class="term-body">
+            <div class="t-line"><span class="t-ok">Claude:</span> 변압기 점검 체크리스트 웹앱을 만들었습니다.</div>
+            <div class="t-line"></div>
+            <div class="t-line"><span class="t-out">✅ 4개 점검 항목 (절연저항, 유중가스분석, 온도측정, 외관점검)</span></div>
+            <div class="t-line"><span class="t-out">✅ 각 항목별 정상/주의/이상 상태 선택</span></div>
+            <div class="t-line"><span class="t-out">✅ 점검자 정보 및 날짜 입력</span></div>
+            <div class="t-line"><span class="t-out">✅ PDF 리포트 출력 기능</span></div>
+            <div class="t-line"></div>
+            <div class="t-line"><span class="t-ok">📎 transformer-checklist.html (다운로드)</span></div>
+          </div>
+        </div>
+        <div class="prose"><p>Claude가 생성한 HTML 파일을 <strong>다운로드</strong>하세요. 더블클릭하면 브라우저에서 바로 확인할 수 있습니다.</p></div>
+      </div>
+      <div class="tab-panel" id="d3">
+        <div class="term">
+          <div class="term-bar"><div class="td"></div><div class="td"></div><div class="td"></div><div class="term-title">수정 요청</div></div>
+          <div class="term-body">
+            <div class="t-line"><span class="t-hl">나:</span> 좋아! 몇 가지 수정해줘.</div>
+            <div class="t-line">1. '이상' 선택하면 사진 첨부할 수 있게</div>
+            <div class="t-line">2. 점검 이력 저장해서 이전 결과와 비교 가능하게</div>
+            <div class="t-line">3. 모바일에서도 잘 보이게 반응형으로</div>
+            <div class="t-line"></div>
+            <div class="t-line"><span class="t-ok">Claude:</span> 수정사항 3가지를 모두 반영하겠습니다...</div>
+            <div class="t-line"><span class="t-ok">📎 transformer-checklist-v2.html (다운로드)</span></div>
+          </div>
+        </div>
+        <div class="callout info"><span class="ci">🔄</span><div class="ct"><strong>이것이 반복적 개선!</strong> 대화를 통해 기능을 계속 추가·수정할 수 있습니다. 기존 개발이라면 추가 비용이 드는 작업입니다.</div></div>
+      </div>
+      <div class="tab-panel" id="d4">
+        <div class="kp-grid">
+          <div class="kp-item"><div class="kpi">📋</div><h4>4개 항목 체크리스트</h4><p>절연저항, 유중가스, 온도, 외관</p></div>
+          <div class="kp-item"><div class="kpi">🚦</div><h4>상태 선택 UI</h4><p>정상/주의/이상 컬러 버튼</p></div>
+          <div class="kp-item"><div class="kpi">📸</div><h4>사진 첨부</h4><p>이상 상태 시 현장 사진 기록</p></div>
+          <div class="kp-item"><div class="kpi">📄</div><h4>PDF 출력</h4><p>원클릭 점검 리포트 생성</p></div>
+        </div>
+        <div class="callout success">
+          <span class="ci">⚡</span>
+          <div class="ct"><strong>총 소요시간: 약 10분</strong> — 기존 외주 개발 시 2~4주 + 수백만원의 비용이 드는 작업을 AI와의 대화만으로 완성했습니다.</div>
+        </div>
+      </div>
+    </div></div>
+  </div>
+
+  <div class="lesson rv" onclick="tog(this)">
+    <div class="lesson-head">
+      <div class="lesson-marker orange">📁</div>
+      <div class="lesson-info"><h3>전력산업 활용 사례 모음</h3><p>실무에서 바로 적용 가능한 아이디어</p></div>
+      <span class="lesson-toggle">▾</span>
+    </div>
+    <div class="lesson-body"><div class="lesson-inner">
+      <div class="tabs">
+        <button class="tab-btn on" onclick="stab(event,'uc1')">설비 관리</button>
+        <button class="tab-btn" onclick="stab(event,'uc2')">데이터 분석</button>
+        <button class="tab-btn" onclick="stab(event,'uc3')">안전 관리</button>
+        <button class="tab-btn" onclick="stab(event,'uc4')">문서 자동화</button>
+      </div>
+      <div class="tab-panel on" id="uc1">
+        <div class="prose"><p><strong>변압기·송배전 설비 점검 관리</strong> — 점검 결과를 입력하면 이상 패턴을 감지하고, 교체가 필요한 설비를 우선순위별로 리스트업하는 대시보드.</p></div>
+        <div class="callout success"><span class="ci">✅</span><div class="ct">점검 시간 60% 단축, 이상 설비 조기 발견율 향상</div></div>
+      </div>
+      <div class="tab-panel" id="uc2">
+        <div class="prose"><p><strong>SMP·전력 수급 분석 도구</strong> — 계통한계가격 데이터와 기온 데이터의 상관관계를 분석하고, 전력 수요를 예측하는 대시보드.</p></div>
+        <div class="callout success"><span class="ci">✅</span><div class="ct">데이터 기반 의사결정 지원, 전력 수급 안정성 향상</div></div>
+      </div>
+      <div class="tab-panel" id="uc3">
+        <div class="prose"><p><strong>활선작업 안전 체크리스트</strong> — 보호구 착용, 접지 확인, TBM 내용을 입력하고, 모든 항목 통과 시에만 작업 시작이 활성화되는 앱.</p></div>
+        <div class="callout success"><span class="ci">✅</span><div class="ct">안전사고 예방, 절차 준수율 100% 달성</div></div>
+      </div>
+      <div class="tab-panel" id="uc4">
+        <div class="prose"><p><strong>일일 보고서 자동 생성</strong> — 전력 사용량 엑셀을 업로드하면 전일 대비 증감률, 이상 구간을 정리한 보고서를 자동 생성하는 도구.</p></div>
+        <div class="callout success"><span class="ci">✅</span><div class="ct">보고서 작성 시간 90% 단축, 일관된 품질 유지</div></div>
+      </div>
+    </div></div>
+  </div>
+</section>
+
+<div class="sep rv">• • •</div>
+
+<!-- ======================== CH4: GitHub ======================== -->
+<section id="ch4">
+  <div class="ch-header rv">
+    <div class="ch-label purple">CHAPTER 04</div>
+    <div class="ch-title">GitHub에 코드 올리기</div>
+    <div class="ch-desc">만든 파일을 GitHub에 올리면 안전하게 보관되고, Vercel 배포와 자동으로 연결됩니다.</div>
+  </div>
+
+  <div class="lesson open rv" onclick="tog(this)">
+    <div class="lesson-head">
+      <div class="lesson-marker purple">📦</div>
+      <div class="lesson-info"><h3>GitHub 저장소 만들기</h3><p>코드의 구글 드라이브를 만듭니다</p></div>
+      <span class="lesson-toggle">▾</span>
+    </div>
+    <div class="lesson-body"><div class="lesson-inner">
+      <div class="prose"><p><strong>GitHub</strong>은 코드를 저장·관리하는 온라인 서비스입니다. 코드의 구글 드라이브라고 생각하세요.</p></div>
+      <ul class="checklist">
+        <li onclick="ck(this)"><span class="ck-box">✓</span><span><strong>github.com</strong> 접속 → "Sign up" → 무료 계정 생성</span></li>
+        <li onclick="ck(this)"><span class="ck-box">✓</span><span>우측 상단 <strong>"+"</strong> → <strong>"New repository"</strong> 클릭</span></li>
+        <li onclick="ck(this)"><span class="ck-box">✓</span><span>이름 입력 (예: <code>power-equipment-checker</code>)</span></li>
+        <li onclick="ck(this)"><span class="ck-box">✓</span><span><strong>"Public"</strong> 선택, <strong>"Add a README file"</strong> 체크</span></li>
+        <li onclick="ck(this)"><span class="ck-box">✓</span><span><strong>"Create repository"</strong> 클릭 → 완료!</span></li>
+      </ul>
+    </div></div>
+  </div>
+
+  <div class="lesson rv" onclick="tog(this)">
+    <div class="lesson-head">
+      <div class="lesson-marker purple">📤</div>
+      <div class="lesson-info"><h3>파일 업로드하기</h3><p>초보: 드래그&드롭 / 중급: Git 명령어</p></div>
+      <span class="lesson-toggle">▾</span>
+    </div>
+    <div class="lesson-body"><div class="lesson-inner">
+      <div class="tabs">
+        <button class="tab-btn on" onclick="stab(event,'up1')">🖱️ 드래그&드롭 (초보 추천)</button>
+        <button class="tab-btn" onclick="stab(event,'up2')">⌨️ Git 명령어</button>
+      </div>
+      <div class="tab-panel on" id="up1">
+        <ul class="checklist">
+          <li onclick="ck(this)"><span class="ck-box">✓</span><span>저장소 페이지에서 <strong>"Add file" → "Upload files"</strong></span></li>
+          <li onclick="ck(this)"><span class="ck-box">✓</span><span>AI가 만들어준 파일을 <strong>드래그 & 드롭</strong></span></li>
+          <li onclick="ck(this)"><span class="ck-box">✓</span><span><strong>"Commit changes"</strong> 클릭 → 끝!</span></li>
+        </ul>
+        <div class="callout warn"><span class="ci">⚠️</span><div class="ct"><strong>중요:</strong> 메인 HTML 파일 이름을 <code>index.html</code>로 해야 Vercel이 홈페이지로 인식합니다.</div></div>
+      </div>
+      <div class="tab-panel" id="up2">
+        <div class="term">
+          <div class="term-bar"><div class="td"></div><div class="td"></div><div class="td"></div><div class="term-title">Terminal</div></div>
+          <div class="term-body">
+            <div class="t-line"><span class="t-comment"># 저장소 복제</span></div>
+            <div class="t-line"><span class="t-prompt">$ </span><span class="t-cmd">git clone https://github.com/내아이디/my-app.git</span></div>
+            <div class="t-line"><span class="t-prompt">$ </span><span class="t-cmd">cd my-app</span></div>
+            <div class="t-line"></div>
+            <div class="t-line"><span class="t-comment"># AI가 만든 파일을 이 폴더에 넣고</span></div>
+            <div class="t-line"><span class="t-prompt">$ </span><span class="t-cmd">git add .</span></div>
+            <div class="t-line"><span class="t-prompt">$ </span><span class="t-cmd">git commit -m "feat: 전력설비 점검 앱"</span></div>
+            <div class="t-line"><span class="t-prompt">$ </span><span class="t-cmd">git push</span></div>
+            <div class="t-line"></div>
+            <div class="t-line"><span class="t-ok">✅ 업로드 완료!</span></div>
+          </div>
+        </div>
+      </div>
+      <div class="ftree">
+        <div><span class="ft-f">📁 my-power-app/</span></div>
+        <div class="ft-i1"><span class="ft-n">📄 index.html</span> ← 메인 (필수)</div>
+        <div class="ft-i1"><span class="ft-d">📄 README.md</span> ← 프로젝트 설명</div>
+      </div>
+    </div></div>
+  </div>
+</section>
+
+<div class="sep rv">• • •</div>
+
+<!-- ======================== CH5: Vercel 배포 ======================== -->
+<section id="ch5">
+  <div class="ch-header rv">
+    <div class="ch-label teal">CHAPTER 05</div>
+    <div class="ch-title">Vercel로 전 세계에 배포하기</div>
+    <div class="ch-desc">GitHub 저장소를 연결하면 자동으로 웹사이트가 만들어집니다. 무료입니다.</div>
+  </div>
+
+  <div class="lesson open rv" onclick="tog(this)">
+    <div class="lesson-head">
+      <div class="lesson-marker teal">🚀</div>
+      <div class="lesson-info"><h3>3분 배포 가이드</h3><p>클릭 몇 번이면 웹사이트가 생깁니다</p></div>
+      <span class="lesson-toggle">▾</span>
+    </div>
+    <div class="lesson-body"><div class="lesson-inner">
+      <ul class="checklist">
+        <li onclick="ck(this)"><span class="ck-box">✓</span><span><strong>vercel.com</strong> 접속 → <strong>"Start Deploying"</strong></span></li>
+        <li onclick="ck(this)"><span class="ck-box">✓</span><span><strong>"Continue with GitHub"</strong> → GitHub 로그인</span></li>
+        <li onclick="ck(this)"><span class="ck-box">✓</span><span><strong>"Add New... → Project"</strong> 클릭</span></li>
+        <li onclick="ck(this)"><span class="ck-box">✓</span><span>내 저장소를 찾아 <strong>"Import"</strong> 클릭</span></li>
+        <li onclick="ck(this)"><span class="ck-box">✓</span><span>설정은 그대로 두고 <strong>"Deploy"</strong> 클릭</span></li>
+        <li onclick="ck(this)"><span class="ck-box">✓</span><span>1~2분 후... <strong>🎉 배포 완료!</strong></span></li>
+      </ul>
+
+      <div style="background:var(--surface);border-radius:var(--radius);padding:28px;text-align:center;margin:16px 0;">
+        <div style="font-size:40px;margin-bottom:12px;">🎊</div>
+        <div style="font-size:18px;font-weight:900;margin-bottom:6px;">배포 성공!</div>
+        <div style="font-size:13px;color:var(--text-secondary);margin-bottom:14px;">나의 AI 프로토타입이 전 세계에 공개되었습니다</div>
+        <div style="display:inline-block;padding:8px 20px;background:var(--green-wash);border:1px solid rgba(22,163,74,0.15);border-radius:8px;font-family:'IBM Plex Mono',monospace;font-size:13px;color:var(--green);font-weight:600;">
+          ✅ https://my-power-app.vercel.app
+        </div>
+      </div>
+
+      <div class="callout info">
+        <span class="ci">🔄</span>
+        <div class="ct"><strong>자동 재배포:</strong> 이후 GitHub에 코드를 수정(push)하면 Vercel이 <strong>자동으로 다시 배포</strong>합니다. 수동 작업이 전혀 필요 없습니다!</div>
+      </div>
+    </div></div>
+  </div>
+</section>
+
+<div class="sep rv">• • •</div>
+
+<!-- ======================== CH6: KEPCO AI ZONE 공유 ======================== -->
+<section id="ch6">
+  <div class="ch-header rv">
+    <div class="ch-label rose">CHAPTER 06</div>
+    <div class="ch-title">KEPCO AI ZONE에 공유하기</div>
+    <div class="ch-desc">완성된 프로토타입을 kepco-ai-zone에 등록하여 전력산업 AI 앱 모음에 추가합니다.</div>
+  </div>
+
+  <div class="lesson open rv" onclick="tog(this)">
+    <div class="lesson-head">
+      <div class="lesson-marker rose">🍴</div>
+      <div class="lesson-info"><h3>Fork → 수정 → Pull Request</h3><p>오픈소스 협업의 기본 흐름</p></div>
+      <span class="lesson-toggle">▾</span>
+    </div>
+    <div class="lesson-body"><div class="lesson-inner">
+      <div class="prose"><p>다른 사람의 프로젝트에 기여하는 표준 절차는 <strong>Fork → 수정 → Pull Request</strong>입니다.</p></div>
+
+      <div class="term">
+        <div class="term-bar"><div class="td"></div><div class="td"></div><div class="td"></div><div class="term-title">KEPCO AI ZONE 등록 전체 과정</div></div>
+        <div class="term-body">
+          <div class="t-line"><span class="t-warn">━━━ STEP A: Fork ━━━━━━━━━━━━━━━━━━━━━━</span></div>
+          <div class="t-line"><span class="t-out">① github.com/kai01235813-eng/kepco-ai-zone 접속</span></div>
+          <div class="t-line"><span class="t-out">② 우측 상단 "Fork" 버튼 클릭 → 내 계정에 복사됨</span></div>
+          <div class="t-line"></div>
+          <div class="t-line"><span class="t-warn">━━━ STEP B: 수정 ━━━━━━━━━━━━━━━━━━━━━━</span></div>
+          <div class="t-line"><span class="t-prompt">$ </span><span class="t-cmd">git clone https://github.com/<span class="t-hl">내아이디</span>/kepco-ai-zone.git</span></div>
+          <div class="t-line"><span class="t-prompt">$ </span><span class="t-cmd">cd kepco-ai-zone</span></div>
+          <div class="t-line"><span class="t-out">③ AI App 섹션에 내 앱 정보 추가</span></div>
+          <div class="t-line"><span class="t-prompt">$ </span><span class="t-cmd">git add . && git commit -m "feat: 내 AI 앱 추가"</span></div>
+          <div class="t-line"><span class="t-prompt">$ </span><span class="t-cmd">git push</span></div>
+          <div class="t-line"></div>
+          <div class="t-line"><span class="t-warn">━━━ STEP C: Pull Request ━━━━━━━━━━━━━━━</span></div>
+          <div class="t-line"><span class="t-out">④ 내 Fork 페이지 → "Contribute" → "Open pull request"</span></div>
+          <div class="t-line"><span class="t-out">⑤ 제목·설명 작성 → "Create pull request"</span></div>
+          <div class="t-line"></div>
+          <div class="t-line"><span class="t-ok">✅ 관리자 승인 후 kepco-ai-zone.vercel.app에 반영!</span></div>
+        </div>
+      </div>
+
+      <div class="callout kepco">
+        <span class="ci">⚡</span>
+        <div class="ct"><strong>KEPCO AI ZONE</strong>에 등록되면 <a href="https://kepco-ai-zone.vercel.app" target="_blank">kepco-ai-zone.vercel.app</a>의 AI App(Prototype) 섹션에서 동료들이 당신의 앱을 확인하고 사용해볼 수 있습니다.</div>
+      </div>
+    </div></div>
+  </div>
+
+  <div class="lesson rv" onclick="tog(this)">
+    <div class="lesson-head">
+      <div class="lesson-marker rose">🗂️</div>
+      <div class="lesson-info"><h3>등록 정보 작성 예시</h3><p>이 정보들을 준비하세요</p></div>
+      <span class="lesson-toggle">▾</span>
+    </div>
+    <div class="lesson-body"><div class="lesson-inner">
+      <div class="term">
+        <div class="term-bar"><div class="td"></div><div class="td"></div><div class="td"></div><div class="term-title">AI App 등록 정보</div></div>
+        <div class="term-body">
+          <div class="t-line"><span class="t-hl">앱 이름    :</span> <span class="t-cmd">전력설비 고장률 분석 대시보드</span></div>
+          <div class="t-line"><span class="t-hl">설명      :</span> <span class="t-out">월별 고장 건수와 설비 유형별 분석 제공</span></div>
+          <div class="t-line"><span class="t-hl">배포 URL   :</span> <span class="t-url">https://my-power-app.vercel.app</span></div>
+          <div class="t-line"><span class="t-hl">GitHub    :</span> <span class="t-url">https://github.com/내아이디/my-power-app</span></div>
+          <div class="t-line"><span class="t-hl">제작자     :</span> <span class="t-out">홍길동 (배전운영팀)</span></div>
+          <div class="t-line"><span class="t-hl">카테고리   :</span> <span class="t-out">데이터분석 / 설비관리</span></div>
+        </div>
+      </div>
+    </div></div>
+  </div>
+</section>
+
+<div class="sep rv">• • •</div>
+
+<!-- ======================== QUIZ ======================== -->
+<section id="quiz-section">
+  <div class="ch-header rv">
+    <div class="ch-label blue">이해도 점검</div>
+    <div class="ch-title">바이브코딩 마스터 퀴즈</div>
+    <div class="ch-desc">6개 챕터에서 배운 내용을 확인해 보세요!</div>
+  </div>
+
+  <div class="quiz-wrap rv">
+    <div class="quiz-progress" id="qProgress"></div>
+    <div id="qCards"></div>
+    <div class="q-result" id="qResult">
+      <div class="q-score" id="qScoreNum"></div>
+      <h4 id="qResTitle"></h4>
+      <p id="qResMsg"></p>
+      <button class="q-restart" onclick="resetQ()">다시 풀기 ↻</button>
+    </div>
+  </div>
+</section>
+
+<!-- ======================== CHEATSHEET ======================== -->
+<section id="cheatsheet">
+  <div class="ch-header rv">
+    <div class="ch-label green">요약</div>
+    <div class="ch-title">전체 과정 치트시트</div>
+  </div>
+
+  <div class="term rv">
+    <div class="term-bar"><div class="td"></div><div class="td"></div><div class="td"></div><div class="term-title">아이디어 → 배포 → 공유 전체 흐름</div></div>
+    <div class="term-body">
+      <div class="t-line"><span class="t-warn">CH1</span> <span class="t-out">바이브코딩 = 자연어로 AI에게 지시하여 프로그램 생성</span></div>
+      <div class="t-line"><span class="t-warn">CH2</span> <span class="t-out">Claude 추천 / 좋은 프롬프트 = 구체적 + 맥락 + 요구사항</span></div>
+      <div class="t-line"><span class="t-warn">CH3</span> <span class="t-out">AI에게 "HTML 파일 하나로 만들어줘" → 다운로드 → 확인</span></div>
+      <div class="t-line"><span class="t-warn">CH4</span> <span class="t-out">GitHub 저장소 생성 → index.html 드래그&드롭 업로드</span></div>
+      <div class="t-line"><span class="t-warn">CH5</span> <span class="t-out">Vercel 가입(GitHub) → Import → Deploy → 끝!</span></div>
+      <div class="t-line"><span class="t-warn">CH6</span> <span class="t-out">kepco-ai-zone Fork → 앱 추가 → Pull Request</span></div>
+      <div class="t-line"></div>
+      <div class="t-line"><span class="t-ok">🎉 전력산업 AI 앱이 세상에 공개되었습니다!</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ======================== CTA ======================== -->
+<section class="cta">
+  <div class="rv">
+    <h2>지금 바로 시작하세요</h2>
+    <p>아이디어만 있으면 됩니다. AI가 만들고, GitHub이 저장하고, Vercel이 배포합니다.</p>
+    <div class="cta-btns">
+      <a href="https://kepco-ai-zone.vercel.app" target="_blank" class="btn btn-primary">⚡ KEPCO AI ZONE</a>
+      <a href="https://github.com/kai01235813-eng/kepco-ai-zone" target="_blank" class="btn btn-outline">📦 GitHub 저장소</a>
+      <a href="https://claude.ai" target="_blank" class="btn btn-outline">🤖 Claude로 시작</a>
+    </div>
+  </div>
+</section>
+
+</div><!-- /wrap -->
+
+<footer>
+  <p>⚡ 바이브코딩 업무가이드 — 전력산업 AI 프로토타입 교육</p>
+  <p style="margin-top:4px;">
+    <a href="https://kepco-ai-zone.vercel.app" target="_blank">KEPCO AI ZONE</a> ·
+    <a href="https://github.com/kai01235813-eng/kepco-ai-zone" target="_blank">GitHub</a>
+  </p>
+</footer>
+
+<script>
+// Lesson toggle
+function tog(el) {
+  const t = event.target;
+  if (t.closest('.checklist') || t.closest('.tabs') || t.closest('.tab-panel') || t.tagName==='A' || t.tagName==='BUTTON') return;
+  el.classList.toggle('open');
+}
+
+// Tabs
+function stab(e, id) {
+  e.stopPropagation();
+  const wrap = e.target.closest('.lesson-inner');
+  wrap.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('on'));
+  wrap.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('on'));
+  e.target.classList.add('on');
+  document.getElementById(id).classList.add('on');
+}
+
+// Checklist
+function ck(li) { event.stopPropagation(); li.classList.toggle('done'); }
+
+// Scroll reveal
+const rvObs = new IntersectionObserver(entries => {
+  entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('vis'); });
+}, { threshold: 0.06, rootMargin: '0px 0px -30px 0px' });
+document.querySelectorAll('.rv').forEach(el => rvObs.observe(el));
+
+// Nav active
+const chIds = ['ch1','ch2','ch3','ch4','ch5','ch6','quiz-section'];
+window.addEventListener('scroll', () => {
+  // progress bar
+  const h = document.documentElement;
+  const pct = (h.scrollTop / (h.scrollHeight - h.clientHeight)) * 100;
+  document.getElementById('progress-bar').style.width = pct + '%';
+
+  // nav highlight
+  let cur = '';
+  chIds.forEach(id => {
+    const s = document.getElementById(id);
+    if (s && s.getBoundingClientRect().top <= 160) cur = id;
+  });
+  document.querySelectorAll('.nav-ch').forEach(a => {
+    a.classList.toggle('active', a.dataset.ch === cur);
+  });
+});
+
+// ===== QUIZ =====
+const QD = [
+  { q: "바이브코딩에서 가장 중요한 역량은?",
+    o: ["Python 문법 암기", "좋은 프롬프트 작성", "타이핑 속도", "디자인 감각"],
+    a: 1, fb: "바이브코딩은 코드가 아닌 자연어로 AI에게 지시하는 것이 핵심이므로, 좋은 프롬프트(지시문)를 작성하는 능력이 가장 중요합니다." },
+  { q: "Claude에게 배포하기 쉬운 결과물을 받으려면?",
+    o: ["'Python 스크립트로 만들어줘'", "'HTML 파일 하나로 만들어줘'", "'PPT로 만들어줘'", "'설계서만 작성해줘'"],
+    a: 1, fb: "HTML 파일 하나로 만들면 별도 설치 없이 브라우저에서 확인할 수 있고, GitHub+Vercel로 즉시 배포할 수 있습니다." },
+  { q: "GitHub에 파일을 올릴 때 메인 파일 이름은?",
+    o: ["main.html", "app.html", "index.html", "home.html"],
+    a: 2, fb: "index.html이 웹 서버의 기본 홈페이지 파일명입니다. Vercel이 이 파일을 메인 페이지로 자동 인식합니다." },
+  { q: "Vercel 배포 후 코드를 수정하면?",
+    o: ["수동으로 다시 배포해야 한다", "자동으로 재배포된다", "새 저장소를 만들어야 한다", "Vercel 유료 플랜이 필요하다"],
+    a: 1, fb: "Vercel은 GitHub 저장소와 연동되어, push가 감지되면 자동으로 재배포합니다. 수동 작업이 필요 없습니다." },
+  { q: "다른 사람의 GitHub 프로젝트에 기여하는 표준 절차는?",
+    o: ["직접 코드를 수정한다", "이메일로 코드를 보낸다", "Fork → 수정 → Pull Request", "Issues에 코드를 댓글로 남긴다"],
+    a: 2, fb: "Fork(복사) → 내 저장소에서 수정 → Pull Request(반영 요청)가 오픈소스 협업의 표준 절차입니다." },
+  { q: "바이브코딩으로 만들기 적합하지 않은 것은?",
+    o: ["설비 점검 체크리스트 앱", "전력 데이터 대시보드", "SCADA 실시간 제어 시스템", "업무 보고서 자동화 도구"],
+    a: 2, fb: "SCADA 같은 실시간 제어 시스템은 높은 안정성과 보안이 요구되므로 전문 개발팀이 담당해야 합니다. 바이브코딩은 업무 도구·분석 도구에 적합합니다." },
+];
+
+let qi = 0, qs = 0, qa = false;
+
+function initQ() {
+  const pc = document.getElementById('qProgress');
+  const cc = document.getElementById('qCards');
+  pc.innerHTML = ''; cc.innerHTML = '';
+  QD.forEach((q, i) => {
+    pc.innerHTML += `<div class="qp-dot ${i===0?'now':''}" id="qd${i}"></div>`;
+    const opts = q.o.map((o,j) => `<button class="q-opt" onclick="ans(${i},${j})" id="qo${i}${j}"><span class="q-mk">${'ABCD'[j]}</span><span>${o}</span></button>`).join('');
+    cc.innerHTML += `<div class="q-card ${i===0?'on':''}" id="qc${i}"><div class="q-num">문제 ${i+1} / ${QD.length}</div><h4>${q.q}</h4><div class="q-opts">${opts}</div><div class="q-fb" id="qf${i}"></div><button class="q-next" id="qn${i}" onclick="nxtQ(${i})">${i===QD.length-1?'결과 보기':'다음 문제 →'}</button></div>`;
+  });
+}
+
+function ans(qi2, oi) {
+  if (qa) return; qa = true;
+  const q = QD[qi2], ok = oi === q.a;
+  if (ok) qs++;
+  q.o.forEach((_, j) => {
+    const el = document.getElementById(`qo${qi2}${j}`);
+    el.classList.add('off');
+    if (j===q.a) el.classList.add('correct');
+    if (j===oi && !ok) el.classList.add('wrong');
+  });
+  const fb = document.getElementById(`qf${qi2}`);
+  fb.className = `q-fb show ${ok?'ok':'no'}`;
+  fb.innerHTML = `${ok?'✅ 정답!':'❌ 오답!'} ${q.fb}`;
+  document.getElementById(`qn${qi2}`).classList.add('show');
+  document.getElementById(`qd${qi2}`).className = 'qp-dot done';
+}
+
+function nxtQ(i) {
+  event.stopPropagation(); qa = false;
+  document.getElementById(`qc${i}`).classList.remove('on');
+  if (i+1 < QD.length) {
+    document.getElementById(`qc${i+1}`).classList.add('on');
+    document.getElementById(`qd${i+1}`).className = 'qp-dot now';
+  } else {
+    const r = document.getElementById('qResult');
+    r.classList.add('show');
+    const pct = Math.round((qs/QD.length)*100);
+    document.getElementById('qScoreNum').textContent = pct+'점';
+    document.getElementById('qResTitle').textContent = pct===100?'🏆 완벽합니다!':pct>=66?'👏 잘하셨습니다!':'💪 복습 후 재도전!';
+    document.getElementById('qResMsg').textContent = pct===100?'바이브코딩의 전체 과정을 완벽하게 이해하셨습니다!':pct>=66?'대부분 잘 이해하고 계십니다. 틀린 부분만 복습하면 완벽합니다!':'위 내용을 다시 읽어보시고 재도전해 보세요!';
+  }
+}
+
+function resetQ() { qi=0; qs=0; qa=false; document.getElementById('qResult').classList.remove('show'); initQ(); }
+
+initQ();
+</script>
+</body>
+</html>
