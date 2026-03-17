@@ -723,7 +723,6 @@ footer a { color: var(--accent); text-decoration: none; }
     <li><a class="nav-ch" href="#ch3" data-ch="ch3">CH3 프로토타입</a></li>
     <li><a class="nav-ch" href="#ch4" data-ch="ch4">CH4 GitHub</a></li>
     <li><a class="nav-ch" href="#ch5" data-ch="ch5">CH5 배포</a></li>
-    <li><a class="nav-ch" href="#ch6" data-ch="ch6">CH6 공유</a></li>
     <li><a class="nav-ch" href="#quiz-section" data-ch="quiz-section">퀴즈</a></li>
   </ul>
 </nav>
@@ -734,11 +733,10 @@ footer a { color: var(--accent); text-decoration: none; }
 <section class="hero" id="hero">
   <div class="hero-badge"><div class="badge-dot">⚡</div>전력산업 종사자를 위한 AI 코딩 실무 교육</div>
   <h1>코드 한 줄 몰라도<br><span class="accent-text">AI 앱을 만들어<br>세상에 공개</span>하는 법</h1>
-  <p class="hero-sub">바이브코딩의 개념부터 프로토타입 제작, GitHub 업로드, Vercel 배포, KEPCO AI ZONE 등록까지. 전력산업 현장에 바로 쓸 수 있는 AI 도구를 직접 만들고 공유하세요.</p>
+  <p class="hero-sub">바이브코딩의 개념부터 프로토타입 제작, GitHub 업로드, Vercel 배포까지. 전력산업 현장에 바로 쓸 수 있는 AI 도구를 직접 만들고 공유하세요.</p>
   <div class="hero-actions">
     <a href="#ch1" class="btn btn-primary">학습 시작하기 →</a>
     <a href="https://vibecodingstarter.vercel.app" target="_blank" class="btn btn-quiz">🧩 바이브코딩 스타터 퀴즈</a>
-    <a href="https://kepco-ai-zone.vercel.app" target="_blank" class="btn btn-outline">KEPCO AI ZONE ↗</a>
   </div>
   <div class="chapter-map">
     <a class="ch-card" href="#ch1" data-color="blue"><div class="ch-num">CH 01</div><div class="ch-icon">💬</div><div class="ch-title">바이브코딩이란</div></a>
@@ -746,7 +744,6 @@ footer a { color: var(--accent); text-decoration: none; }
     <a class="ch-card" href="#ch3" data-color="orange"><div class="ch-num">CH 03</div><div class="ch-icon">🤖</div><div class="ch-title">프로토타입 제작</div></a>
     <a class="ch-card" href="#ch4" data-color="purple"><div class="ch-num">CH 04</div><div class="ch-icon">📦</div><div class="ch-title">GitHub 업로드</div></a>
     <a class="ch-card" href="#ch5" data-color="teal"><div class="ch-num">CH 05</div><div class="ch-icon">🚀</div><div class="ch-title">Vercel 배포</div></a>
-    <a class="ch-card" href="#ch6" data-color="rose"><div class="ch-num">CH 06</div><div class="ch-icon">⚡</div><div class="ch-title">AI ZONE 공유</div></a>
   </div>
 </section>
 
@@ -1128,82 +1125,12 @@ HTML 파일 하나로 만들어줘."</pre>
 
 <div class="sep rv">• • •</div>
 
-<!-- ======================== CH6: KEPCO AI ZONE 공유 ======================== -->
-<section id="ch6">
-  <div class="ch-header rv">
-    <div class="ch-label rose">CHAPTER 06</div>
-    <div class="ch-title">KEPCO AI ZONE에 공유하기</div>
-    <div class="ch-desc">완성된 프로토타입을 kepco-ai-zone에 등록하여 전력산업 AI 앱 모음에 추가합니다.</div>
-  </div>
-
-  <div class="lesson open rv" onclick="tog(this)">
-    <div class="lesson-head">
-      <div class="lesson-marker rose">🍴</div>
-      <div class="lesson-info"><h3>Fork → 수정 → Pull Request</h3><p>오픈소스 협업의 기본 흐름</p></div>
-      <span class="lesson-toggle">▾</span>
-    </div>
-    <div class="lesson-body"><div class="lesson-inner">
-      <div class="prose"><p>다른 사람의 프로젝트에 기여하는 표준 절차는 <strong>Fork → 수정 → Pull Request</strong>입니다.</p></div>
-
-      <div class="term">
-        <div class="term-bar"><div class="td"></div><div class="td"></div><div class="td"></div><div class="term-title">KEPCO AI ZONE 등록 전체 과정</div></div>
-        <div class="term-body">
-          <div class="t-line"><span class="t-warn">━━━ STEP A: Fork ━━━━━━━━━━━━━━━━━━━━━━</span></div>
-          <div class="t-line"><span class="t-out">① github.com/kai01235813-eng/kepco-ai-zone 접속</span></div>
-          <div class="t-line"><span class="t-out">② 우측 상단 "Fork" 버튼 클릭 → 내 계정에 복사됨</span></div>
-          <div class="t-line"></div>
-          <div class="t-line"><span class="t-warn">━━━ STEP B: 수정 ━━━━━━━━━━━━━━━━━━━━━━</span></div>
-          <div class="t-line"><span class="t-prompt">$ </span><span class="t-cmd">git clone https://github.com/<span class="t-hl">내아이디</span>/kepco-ai-zone.git</span></div>
-          <div class="t-line"><span class="t-prompt">$ </span><span class="t-cmd">cd kepco-ai-zone</span></div>
-          <div class="t-line"><span class="t-out">③ AI App 섹션에 내 앱 정보 추가</span></div>
-          <div class="t-line"><span class="t-prompt">$ </span><span class="t-cmd">git add . && git commit -m "feat: 내 AI 앱 추가"</span></div>
-          <div class="t-line"><span class="t-prompt">$ </span><span class="t-cmd">git push</span></div>
-          <div class="t-line"></div>
-          <div class="t-line"><span class="t-warn">━━━ STEP C: Pull Request ━━━━━━━━━━━━━━━</span></div>
-          <div class="t-line"><span class="t-out">④ 내 Fork 페이지 → "Contribute" → "Open pull request"</span></div>
-          <div class="t-line"><span class="t-out">⑤ 제목·설명 작성 → "Create pull request"</span></div>
-          <div class="t-line"></div>
-          <div class="t-line"><span class="t-ok">✅ 관리자 승인 후 kepco-ai-zone.vercel.app에 반영!</span></div>
-        </div>
-      </div>
-
-      <div class="callout kepco">
-        <span class="ci">⚡</span>
-        <div class="ct"><strong>KEPCO AI ZONE</strong>에 등록되면 <a href="https://kepco-ai-zone.vercel.app" target="_blank">kepco-ai-zone.vercel.app</a>의 AI App(Prototype) 섹션에서 동료들이 당신의 앱을 확인하고 사용해볼 수 있습니다.</div>
-      </div>
-    </div></div>
-  </div>
-
-  <div class="lesson rv" onclick="tog(this)">
-    <div class="lesson-head">
-      <div class="lesson-marker rose">🗂️</div>
-      <div class="lesson-info"><h3>등록 정보 작성 예시</h3><p>이 정보들을 준비하세요</p></div>
-      <span class="lesson-toggle">▾</span>
-    </div>
-    <div class="lesson-body"><div class="lesson-inner">
-      <div class="term">
-        <div class="term-bar"><div class="td"></div><div class="td"></div><div class="td"></div><div class="term-title">AI App 등록 정보</div></div>
-        <div class="term-body">
-          <div class="t-line"><span class="t-hl">앱 이름    :</span> <span class="t-cmd">전력설비 고장률 분석 대시보드</span></div>
-          <div class="t-line"><span class="t-hl">설명      :</span> <span class="t-out">월별 고장 건수와 설비 유형별 분석 제공</span></div>
-          <div class="t-line"><span class="t-hl">배포 URL   :</span> <span class="t-url">https://my-power-app.vercel.app</span></div>
-          <div class="t-line"><span class="t-hl">GitHub    :</span> <span class="t-url">https://github.com/내아이디/my-power-app</span></div>
-          <div class="t-line"><span class="t-hl">제작자     :</span> <span class="t-out">홍길동 (배전운영팀)</span></div>
-          <div class="t-line"><span class="t-hl">카테고리   :</span> <span class="t-out">데이터분석 / 설비관리</span></div>
-        </div>
-      </div>
-    </div></div>
-  </div>
-</section>
-
-<div class="sep rv">• • •</div>
-
 <!-- ======================== QUIZ ======================== -->
 <section id="quiz-section">
   <div class="ch-header rv">
     <div class="ch-label blue">이해도 점검</div>
     <div class="ch-title">바이브코딩 마스터 퀴즈</div>
-    <div class="ch-desc">6개 챕터에서 배운 내용을 확인해 보세요!</div>
+    <div class="ch-desc">5개 챕터에서 배운 내용을 확인해 보세요!</div>
   </div>
 
   <div class="quiz-wrap rv">
@@ -1233,7 +1160,6 @@ HTML 파일 하나로 만들어줘."</pre>
       <div class="t-line"><span class="t-warn">CH3</span> <span class="t-out">AI에게 "HTML 파일 하나로 만들어줘" → 다운로드 → 확인</span></div>
       <div class="t-line"><span class="t-warn">CH4</span> <span class="t-out">GitHub 저장소 생성 → index.html 드래그&드롭 업로드</span></div>
       <div class="t-line"><span class="t-warn">CH5</span> <span class="t-out">Vercel 가입(GitHub) → Import → Deploy → 끝!</span></div>
-      <div class="t-line"><span class="t-warn">CH6</span> <span class="t-out">kepco-ai-zone Fork → 앱 추가 → Pull Request</span></div>
       <div class="t-line"></div>
       <div class="t-line"><span class="t-ok">🎉 전력산업 AI 앱이 세상에 공개되었습니다!</span></div>
     </div>
@@ -1246,9 +1172,8 @@ HTML 파일 하나로 만들어줘."</pre>
     <h2>지금 바로 시작하세요</h2>
     <p>아이디어만 있으면 됩니다. AI가 만들고, GitHub이 저장하고, Vercel이 배포합니다.</p>
     <div class="cta-btns">
-      <a href="https://kepco-ai-zone.vercel.app" target="_blank" class="btn btn-primary">⚡ KEPCO AI ZONE</a>
-      <a href="https://github.com/kai01235813-eng/kepco-ai-zone" target="_blank" class="btn btn-outline">📦 GitHub 저장소</a>
-      <a href="https://claude.ai" target="_blank" class="btn btn-outline">🤖 Claude로 시작</a>
+      <a href="https://claude.ai" target="_blank" class="btn btn-primary">🤖 Claude로 시작</a>
+      <a href="https://vercel.com" target="_blank" class="btn btn-outline">🚀 Vercel 배포</a>
     </div>
   </div>
 </section>
@@ -1258,8 +1183,9 @@ HTML 파일 하나로 만들어줘."</pre>
 <footer>
   <p>⚡ 바이브코딩 업무가이드 — 전력산업 AI 프로토타입 교육</p>
   <p style="margin-top:4px;">
-    <a href="https://kepco-ai-zone.vercel.app" target="_blank">KEPCO AI ZONE</a> ·
-    <a href="https://github.com/kai01235813-eng/kepco-ai-zone" target="_blank">GitHub</a>
+    <a href="https://github.com" target="_blank">GitHub</a> ·
+    <a href="https://vercel.com" target="_blank">Vercel</a> ·
+    <a href="https://claude.ai" target="_blank">Claude</a>
   </p>
 </footer>
 
@@ -1291,7 +1217,7 @@ const rvObs = new IntersectionObserver(entries => {
 document.querySelectorAll('.rv').forEach(el => rvObs.observe(el));
 
 // Nav active
-const chIds = ['ch1','ch2','ch3','ch4','ch5','ch6','quiz-section'];
+const chIds = ['ch1','ch2','ch3','ch4','ch5','quiz-section'];
 window.addEventListener('scroll', () => {
   // progress bar
   const h = document.documentElement;
@@ -1323,9 +1249,6 @@ const QD = [
   { q: "Vercel 배포 후 코드를 수정하면?",
     o: ["수동으로 다시 배포해야 한다", "자동으로 재배포된다", "새 저장소를 만들어야 한다", "Vercel 유료 플랜이 필요하다"],
     a: 1, fb: "Vercel은 GitHub 저장소와 연동되어, push가 감지되면 자동으로 재배포합니다. 수동 작업이 필요 없습니다." },
-  { q: "다른 사람의 GitHub 프로젝트에 기여하는 표준 절차는?",
-    o: ["직접 코드를 수정한다", "이메일로 코드를 보낸다", "Fork → 수정 → Pull Request", "Issues에 코드를 댓글로 남긴다"],
-    a: 2, fb: "Fork(복사) → 내 저장소에서 수정 → Pull Request(반영 요청)가 오픈소스 협업의 표준 절차입니다." },
   { q: "바이브코딩으로 만들기 적합하지 않은 것은?",
     o: ["설비 점검 체크리스트 앱", "전력 데이터 대시보드", "SCADA 실시간 제어 시스템", "업무 보고서 자동화 도구"],
     a: 2, fb: "SCADA 같은 실시간 제어 시스템은 높은 안정성과 보안이 요구되므로 전문 개발팀이 담당해야 합니다. 바이브코딩은 업무 도구·분석 도구에 적합합니다." },
